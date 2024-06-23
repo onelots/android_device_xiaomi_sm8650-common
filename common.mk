@@ -3,6 +3,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Add common definitions for Qualcomm
+$(call inherit-product, hardware/qcom-caf/common/common.mk)
+
 # AAPT
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
@@ -143,6 +146,12 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Storage
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+
+# Symlink
+$(call soong_config_set,rfs,mpss_firmware_symlink_target,modem_firmware)
+
+PRODUCT_PACKAGES += \
+    rfs_msm_mpss_readonly_mbnconfig_symlink
 
 # Telephony
 PRODUCT_COPY_FILES += \
