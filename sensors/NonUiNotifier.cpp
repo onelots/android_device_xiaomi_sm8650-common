@@ -12,6 +12,7 @@
 #include <fcntl.h>
 #include <poll.h>
 #include <sys/ioctl.h>
+#include <unistd.h>
 
 #include <linux/xiaomi_touch.h>
 
@@ -54,8 +55,15 @@ static bool readBool(int fd) {
 
 struct NonUiSensorCallback : IEventQueueCallback {
     Return<void> onEvent(const Event& e) {
+        int touchFd = open(TOUCH_DEV_PATH, O_RDWR);
+        if (touchFd == -1) {
+            LOG(ERROR) << "failed to open " << TOUCH_DEV_PATH;
+            return Void();
+        }
+
         int buf[MAX_BUF_SIZE] = {0, Touch_Nonui_Mode, static_cast<int>(e.u.scalar)};
-        ioctl(open(TOUCH_DEV_PATH, O_RDWR), TOUCH_IOC_SET_CUR_VALUE, &buf);
+        ioctl(touchFd, TOUCH_IOC_SET_CUR_VALUE, &buf);
+        close(touchFd);
 
         return Void();
     }
