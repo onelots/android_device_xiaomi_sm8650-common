@@ -132,4 +132,4 @@
 # Xiaomi thermal daemon
 /(vendor|system/vendor)/bin/mi_thermald     u:object_r:mi_thermald_exec:s0
 /data/vendor/thermal(/.*)?                  u:object_r:vendor_thermal_data_file:s0
-/(vendor|system/vendor)/bin/nonui-notifier u:object_r:vendor_nonui_notifier_exec:s0
+/(vendor|system/vendor)/bin/sensor-notifier u:object_r:vendor_sensor_notifier_exec:s0

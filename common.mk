@@ -481,4 +481,4 @@ $(call inherit-product, vendor/xiaomi/sm8650-common/sm8650-common-vendor.mk)
 
 # Touchscreen
 PRODUCT_PACKAGES += \
-    nonui-notifier
+    sensor-notifier
