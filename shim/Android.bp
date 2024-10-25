@@ -10,5 +10,17 @@ cc_library_shared {
     shared_libs: [
         "libcodec2_hidl@1.0",
     ],
-    vendor_available: true,
+    vendor: true,
+}
+
+cc_library_shared {
+    name: "libshim",
+    shared_libs: [
+        "libui",
+        "libutils",
+    ],
+    srcs: [
+        "libshim.cpp",
+    ],
+    vendor: true,
 }
