@@ -325,6 +325,10 @@ subsystem mem_buf_vm
 /dev/dvb/adapter0/dvr*    0660   media       media
 /dev/dvb/adapter0/video*  0660   media       media
 
+# Battery
+/sys/class/qcom-battery  night_charging  0660    system  system
+/sys/class/qcom-battery  reverse_chg_mode  0644    system  system
+
 # Broadcast devices
 /dev/tsc_mux0             0660   media       media
 /dev/tsc_ci0              0660   media       media
@@ -419,6 +423,11 @@ subsystem mem_buf_vm
 
 # Ramdump devices
 /dev/ramdump*             0640   system     system
+
+# Fingerprint device
+/dev/qbt*                 0660   system     system
+/sys/class/fts/touch_aoi aoi_set 0660 root system
+/sys/class/fts/touch_aoi power_set 0660 root system
 
 #ImproveTouch device
 /dev/hbtp_input           0660   system     system
