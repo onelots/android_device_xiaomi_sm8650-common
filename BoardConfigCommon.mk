@@ -93,5 +93,8 @@ TARGET_USERIMAGES_USE_F2FS := true
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
 
+# SEPolicy
+include device/qcom/sepolicy_vndr/SEPolicy.mk
+
 # Include the proprietary files BoardConfig.
 include vendor/xiaomi/sm8650-common/BoardConfigVendor.mk
