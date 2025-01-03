@@ -26,5 +26,8 @@ PRODUCT_SHIPPING_API_LEVEL := 34
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
 
+# Storage
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+
 # Inherit from the proprietary files makefile.
 $(call inherit-product, vendor/xiaomi/sm8650-common/sm8650-common-vendor.mk)
