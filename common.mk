@@ -62,6 +62,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/android.hardware.consumerir.xml
 
+# Init
+PRODUCT_PACKAGES += \
+    fstab.default \
+    fstab.default.vendor_ramdisk
+
 # Kernel
 PRODUCT_COPY_FILES += \
     kernel/xiaomi/sm8650/modules.systemdlkm_blocklist.msm.pineapple:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
