@@ -1,0 +1,17 @@
+<compatibility-matrix version="7.0" type="framework">
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.qconfig</name>
+        <version>5</version>
+        <interface>
+            <name>IQConfig</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.qegahal</name>
+        <interface>
+            <name>IQegahal</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+</compatibility-matrix>
