@@ -39,6 +39,11 @@ BOARD_BOOTCONFIG := \
     androidboot.usbcontroller=a600000.dwc3
 
 BOARD_KERNEL_CMDLINE := \
+	androidboot.load_modules_parallel=true \
+    androidboot.hypervisor.protected_vm.supported=0 \
+    androidboot.vendor.qspa=true \
+    androidboot.console=0 \
+    video=vfb:640x400,bpp=32,memsize=3072000 \
     swinfo.fingerprint=$(PRODUCT_DEVICE):$(LINEAGE_VERSION) \
     mtdoops.fingerprint=$(PRODUCT_DEVICE):$(LINEAGE_VERSION)
 
