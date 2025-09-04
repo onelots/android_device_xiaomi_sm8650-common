@@ -244,6 +244,12 @@ PRODUCT_COPY_FILES += \
 # Libinit
 $(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):libinit_xiaomi_8650)
 
+# LiveDisplay
+PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay-service.sdm
+
+$(call soong_config_set_bool,livedisplay_sdm,enable_dm,false)
+
 # Media
 PRODUCT_COPY_FILES += \
     $(AUDIO_HAL_DIR)/configs/common/codec2/media_codecs_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_c2_audio.xml \
