@@ -1,0 +1,18 @@
+[
+  {
+    "repository": "android_kernel_xiaomi_sm8650",
+    "target_path": "kernel/xiaomi/sm8650"
+  },
+  {
+    "repository": "android_kernel_xiaomi_sm8650-devicetrees",
+    "target_path": "kernel/xiaomi/sm8650-devicetrees"
+  },
+  {
+    "repository": "android_kernel_xiaomi_sm8650-modules",
+    "target_path": "kernel/xiaomi/sm8650-modules"
+  },
+  {
+    "repository": "android_kernel_xiaomi_common-modules",
+    "target_path": "kernel/xiaomi/common-modules"
+  }
+]
