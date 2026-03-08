@@ -66,7 +66,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     fstab.default \
     fstab.default.vendor_ramdisk \
-    init.qcom.recovery.rc
+    init.xiaomi.rc \
+    init.qcom.recovery.rc \
+    init.qcom.usb.rc \
+    init.qcom.usb.sh \
+    init.target.rc \
+    ueventd.qcom.rc
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/init/fstab.default:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.default
 
 # Kernel
 PRODUCT_COPY_FILES += \
