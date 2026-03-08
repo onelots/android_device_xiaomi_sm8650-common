@@ -47,20 +47,13 @@ on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
     write /proc/sys/kernel/firmware_config/force_sysfs_fallback 1
-    mkdir /vendor/firmware_mnt
-    mkdir /vendor/firmware
-    mount_all /vendor/etc/charger_fstab.qti --early
-    mount none /vendor/firmware_mnt/image /vendor/firmware bind rec
-    wait /sys/kernel/boot_adsp/boot
-    write /sys/kernel/boot_adsp/boot 1
-    wait /sys/class/power_supply/battery
-
     # Load ADSP firmware for PMIC
     mkdir /firmware
     mount vfat /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} /firmware ro context=u:object_r:firmware_file:s0
 
-on property:dev.mnt.blk.firmware=*
+    wait /sys/kernel/boot_adsp/boot
     write /sys/kernel/boot_adsp/boot 1
+    wait /sys/class/power_supply/battery
 
 on property:init.svc.fastbootd=running
     umount /firmware

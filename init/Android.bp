@@ -11,8 +11,29 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
+    name: "init.xiaomi.rc",
+    src: "init.xiaomi.rc",
+    sub_dir: "init/hw",
+    soc_specific: true,
+}
+
+prebuilt_etc {
     name: "init.qcom.recovery.rc",
     src: "init.qcom.recovery.rc",
     sub_dir: "init",
     recovery: true,
+}
+
+prebuilt_etc {
+    name: "init.target.rc",
+    src: "init.target.rc",
+    sub_dir: "init/hw",
+    soc_specific: true,
+}
+
+prebuilt_etc {
+    name: "ueventd.qcom.rc",
+    filename: "ueventd.rc",
+    src: "ueventd.qcom.rc",
+    soc_specific: true,
 }
