@@ -9,3 +9,10 @@ prebuilt_etc {
     soc_specific: true,
     vendor_ramdisk_available: true,
 }
+
+prebuilt_etc {
+    name: "init.qcom.recovery.rc",
+    src: "init.qcom.recovery.rc",
+    sub_dir: "init",
+    recovery: true,
+}
