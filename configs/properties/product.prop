@@ -1,3 +1,9 @@
+# Audio
+audio.sys.noisy.broadcast.delay=600
+audio.sys.offload.pstimeout.secs=3
+persist.audio.button_jack.profile=volume
+persist.audio.button_jack.switch=0
+
 # RKPD
 remote_provisioning.enable_rkpd=true
 remote_provisioning.hostname=remoteprovisioning.googleapis.com
