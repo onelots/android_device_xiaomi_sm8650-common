@@ -336,15 +336,22 @@ PRODUCT_PACKAGES += \
 
 # VINTF
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
-    $(COMMON_PATH)/configs/vintf/compatibility_matrix.device.xml \
-    $(COMMON_PATH)/configs/vintf/compatibility_matrix.xiaomi.xml \
+    $(LOCAL_PATH)/configs/vintf/compatibility_matrix.device.xml \
+    $(LOCAL_PATH)/configs/vintf/compatibility_matrix.xiaomi.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml
 
 DEVICE_MATRIX_FILE := \
-    $(COMMON_PATH)/configs/vintf/compatibility_matrix.xml \
+    $(LOCAL_PATH)/configs/vintf/compatibility_matrix.xml \
     hardware/qcom-caf/common/compatibility_matrix.xml
 
-# WiFi
+DEVICE_MANIFEST_SKUS := pineapple
+DEVICE_MANIFEST_PINEAPPLE_FILES := \
+    $(LOCAL_PATH)/configs/vintf/manifest_xiaomi.xml \
+    $(LOCAL_PATH)/configs/vintf/manifest_pineapple.xml \
+    hardware/qcom-caf/sm8650/audio/primary-hal/configs/common/manifest_non_qmaa.xml \
+    hardware/qcom-caf/sm8650/audio/primary-hal/configs/common/manifest_non_qmaa_extn.xml
+
+# Wi-Fi
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
     hostapd \
