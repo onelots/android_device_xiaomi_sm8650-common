@@ -1,0 +1,32 @@
+# Fingerprint
+genfscon sysfs "/devices/platform/soc/soc:xiaomi_fingerprint/fingerdown"    u:object_r:vendor_sysfs_displayfeature:s0
+genfscon sysfs "/devices/platform/soc/soc:xiaomi_fingerprint/actpower"      u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/virtual/touch/touch_dev/fod_press_status"          u:object_r:sysfs_tp_fodstatus:s0
+genfscon sysfs "/devices/virtual/touch/touch_dev/gesture_single_tap_state"  u:object_r:sysfs_tp_fodstatus:s0
+
+# Touchfeature
+genfscon proc "/tp_fw_version"            u:object_r:proc_tp_file:s0
+genfscon proc "/tp_lockdown_info"         u:object_r:proc_tp_lockdown:s0
+genfscon sysfs "/devices/virtual/touch/touch_dev/abnormal_event"        u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs "/devices/virtual/touch/touch_dev/enable_touch_raw"      u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs "/devices/virtual/touch/touch_dev/palm_sensor"           u:object_r:sysfs_tp_virtual_prox:s0
+genfscon sysfs "/devices/virtual/touch/touch_dev/touch_doze_analysis"   u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs "/devices/virtual/touch/touch_dev/touch_finger_status"   u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs "/devices/virtual/touch/touch_dev/touch_ic_buffer"       u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs "/devices/virtual/touch/touch_dev/touch_thp_ic_cmd_data" u:object_r:sysfs_touch_hostprocess:s0
+genfscon sysfs "/devices/virtual/touch/touch_dev/touch_thp_ic_cmd"      u:object_r:sysfs_touch_hostprocess:s0
+
+# Wake up
+genfscon sysfs "/devices/platform/soc/8c0000.qcom,qupv3_1_geni_se/884000.i2c/i2c-6/6-0028/wakeup" u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/platform/soc/8c0000.qcom,qupv3_2_geni_se/894000.qcom,qup_uart/wakeup"    u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a80000.i2c/i2c-6/6-0028/wakeup" u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a80000.i2c/i2c-7/7-0028/wakeup" u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a8c000.i2c/i2c-6/6-000e/wakeup" u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a8c000.i2c/i2c-7/7-000e/wakeup" u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/platform/soc/ac0000.qcom,qupv3_1_geni_se/a8c000.i2c/i2c-8/8-000e/wakeup" u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-00/c42d000.qcom,spmi:qcom,pmk8550@0:pon_hlos@1300/c42d000.qcom,spmi:qcom,pmk8550@0:pon_hlos@1300:pwrkey-bark/wakeup"       u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/platform/soc/c42d000.qcom,spmi/spmi-0/0-00/c42d000.qcom,spmi:qcom,pmk8550@0:pon_hlos@1300/c42d000.qcom,spmi:qcom,pmk8550@0:pon_hlos@1300:pwrkey-resin-bark/wakeup" u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/platform/soc/soc:fingerprint_goodix/wakeup"                              u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/platform/soc/soc:jingshang_mdm/wakeup"                                   u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/platform/soc/soc:xiaomi_wifi_gpio/wakeup"                                u:object_r:sysfs_wakeup:s0
+genfscon sysfs "/devices/platform/synaptics_tcm.0/wakeup"                                         u:object_r:sysfs_wakeup:s0
