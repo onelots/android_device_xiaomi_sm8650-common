@@ -24,6 +24,7 @@ namespace_imports = [
     'hardware/qcom-caf/wlan',
     'hardware/qcom-caf/sm8650',
     'hardware/xiaomi',
+    'vendor/qcom/opensource/commonsys/display',
     'vendor/qcom/opensource/commonsys-intf/display',
     'vendor/qcom/opensource/dataservices',
 ]
@@ -51,6 +52,10 @@ lib_fixups: lib_fixups_user_type = {
 }
 
 blob_fixups: blob_fixups_user_type = {
+    'system/framework/WfdCommon.jar': blob_fixup()
+        .apktool_patch('blob-patches/WfdCommon.patch'),
+    'system_ext/lib64/libwfdservice.so': blob_fixup()
+        .replace_needed('android.media.audio.common.types-V4-cpp.so', 'android.media.audio.common.types-V5-cpp.so'),
     (
         'vendor/bin/hw/vendor.qti.media.c2@1.0-service',
         'vendor/bin/hw/vendor.dolby.media.c2@1.0-service',
