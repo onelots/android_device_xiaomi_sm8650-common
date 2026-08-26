@@ -62,6 +62,8 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/etc/media_codecs_pinaepple_vendor.xml'
     ): blob_fixup()
         .regex_replace('.*media_codecs_(google_audio|google_c2|google_telephony|google_video|vendor_audio).*\n', ''),
+    'vendor/etc/perf/perfconfigstore.xml': blob_fixup()
+        .regex_replace(r'(Name="vendor\.debug\.enable\.memperfd"\s+Value=")true"', r'\1false"'),
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()
         .add_needed('libhidlbase_shim.so')
         .add_needed('libbinder_shim.so'),
