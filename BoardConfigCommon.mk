@@ -58,6 +58,9 @@ TARGET_KERNEL_CONFIG := \
     vendor/pineapple_GKI.config \
     vendor/$(PRODUCT_DEVICE)_GKI.config
 
+# Libinit
+TARGET_RECOVERY_DEVICE_MODULES := libinit_xiaomi_8650
+
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
 
