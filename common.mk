@@ -189,11 +189,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     vendor/qcom/opensource/power/config/pineapple/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 
+ifneq ($(filter aurora ruyi manet,$(TARGET_DEVICE)),)
 # PowerShare
 PRODUCT_PACKAGES += \
     vendor.lineage.powershare-service.default
 
 $(call soong_config_set,lineage_powershare,powershare_path,/sys/class/qcom-battery/reverse_chg_mode)
+endif
 
 # Sensors
 PRODUCT_PACKAGES += \
