@@ -7,8 +7,10 @@
 #define LOG_TAG "UdfpsHandler.xiaomi_sm8650"
 
 #include <aidl/android/hardware/biometrics/fingerprint/BnFingerprint.h>
+#include <aidl/vendor/xiaomi/hw/touchfeature/ITouchFeature.h>
 #include <android-base/logging.h>
 #include <android-base/unique_fd.h>
+#include <android/binder_manager.h>
 
 #include <fstream>
 
@@ -31,9 +33,13 @@
 #define DISP_PARAM_LOCAL_HBM_OFF "0"
 #define DISP_PARAM_LOCAL_HBM_ON "1"
 
+#define TOUCH_ID 0
+#define TOUCH_MODE_FOD_ENABLE 10
+
 #define FINGERPRINT_ACQUIRED_VENDOR 7
 
 using ::aidl::android::hardware::biometrics::fingerprint::AcquiredInfo;
+using ::aidl::vendor::xiaomi::hw::touchfeature::ITouchFeature;
 
 namespace {
 
@@ -90,9 +96,30 @@ class XiaomiSM8650UdfpsHander : public UdfpsHandler {
 
   private:
     fingerprint_device_t* mDevice;
+    std::shared_ptr<ITouchFeature> mTouchFeature;
 
     void setFodStatus(int value) {
         set(FOD_STATUS_PATH, value);
+        setTouchFodEnable(value == FOD_STATUS_ON);
+    }
+
+    void setTouchFodEnable(bool enable) {
+        if (!mTouchFeature) {
+            const std::string instance = std::string(ITouchFeature::descriptor) + "/default";
+            mTouchFeature = ITouchFeature::fromBinder(
+                    ndk::SpAIBinder(AServiceManager_checkService(instance.c_str())));
+            if (!mTouchFeature) {
+                LOG(ERROR) << "Failed to get " << instance;
+                return;
+            }
+        }
+
+        /*
+         * Keep FOD gesture enabled in the touch IC while authenticating,
+         * otherwise it enters deep sleep once the panel dozes.
+         */
+        int32_t ret;
+        mTouchFeature->setModeValue(TOUCH_ID, TOUCH_MODE_FOD_ENABLE, enable ? 1 : 0, &ret);
     }
 
     void setFingerDown(bool pressed) {
