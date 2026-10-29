@@ -80,7 +80,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
             boolean enabled = Settings.Secure.getInt(context.getContentResolver(),
                                       Settings.Secure.DOUBLE_TAP_TO_WAKE, 0)
                     == 1;
-            xiaomiTouchFeatureAidl.setTouchMode(0, DOUBLE_TAP_TO_WAKE_MODE, enabled ? 1 : 0);
+            xiaomiTouchFeatureAidl.setModeValue(0, DOUBLE_TAP_TO_WAKE_MODE, enabled ? 1 : 0);
         } catch (Exception e) {
             Log.e(TAG, "Failed to update Tap to Wake status", e);
         }
