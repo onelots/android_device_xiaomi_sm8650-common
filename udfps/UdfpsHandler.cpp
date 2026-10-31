@@ -12,7 +12,9 @@
 #include <android-base/unique_fd.h>
 #include <android/binder_manager.h>
 
+#include <chrono>
 #include <fstream>
+#include <thread>
 
 #include "UdfpsHandler.h"
 
@@ -21,6 +23,8 @@
 #define PARAM_NIT_NONE 0
 
 #define COMMAND_FOD_PRESS_STATUS 1
+#define COMMAND_FOD_PRESS_X 2
+#define COMMAND_FOD_PRESS_Y 3
 #define PARAM_FOD_PRESSED 1
 #define PARAM_FOD_RELEASED 0
 
@@ -57,14 +61,35 @@ class XiaomiSM8650UdfpsHander : public UdfpsHandler {
         mDevice = device;
     }
 
-    void onFingerDown(uint32_t /*x*/, uint32_t /*y*/, float /*minor*/, float /*major*/) {
-        LOG(INFO) << __func__;
+    void onFingerDown(uint32_t x, uint32_t y, float /*minor*/, float /*major*/) {
+        if (mAuthSuccess) return;
+        LOG(INFO) << __func__ << " x: " << x << " y: " << y;
+        mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_X, x);
+        mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_Y, y);
         setFingerDown(true);
     }
 
     void onFingerUp() {
         LOG(INFO) << __func__;
         setFingerDown(false);
+        mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_X, 0);
+        mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_Y, 0);
+    }
+
+    void onAuthenticationSucceeded() {
+        LOG(INFO) << __func__;
+        mAuthSuccess = true;
+        onFingerUp();
+        setFodStatus(FOD_STATUS_OFF);
+        std::thread([this]() {
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            mAuthSuccess = false;
+        }).detach();
+    }
+
+    void onAuthenticationFailed() {
+        LOG(INFO) << __func__;
+        onFingerUp();
     }
 
     void onAcquired(int32_t result, int32_t vendorCode) {
@@ -79,6 +104,7 @@ class XiaomiSM8650UdfpsHander : public UdfpsHandler {
              * vendorCode = 21 waiting for fingerprint authentication
              * vendorCode = 23 waiting for fingerprint enroll
              */
+            mAuthSuccess = false;
             setFodStatus(FOD_STATUS_ON);
         } else if (vendorCode == 44) {
             /*
@@ -90,6 +116,7 @@ class XiaomiSM8650UdfpsHander : public UdfpsHandler {
 
     void cancel() {
         LOG(INFO) << __func__;
+        mAuthSuccess = false;
         setFingerDown(false);
         setFodStatus(FOD_STATUS_OFF);
     }
@@ -97,6 +124,7 @@ class XiaomiSM8650UdfpsHander : public UdfpsHandler {
   private:
     fingerprint_device_t* mDevice;
     std::shared_ptr<ITouchFeature> mTouchFeature;
+    bool mAuthSuccess = false;
 
     void setFodStatus(int value) {
         set(FOD_STATUS_PATH, value);
@@ -129,9 +157,8 @@ class XiaomiSM8650UdfpsHander : public UdfpsHandler {
             std::string(DISP_PARAM_LOCAL_HBM_MODE) + " " +
                     (pressed ? DISP_PARAM_LOCAL_HBM_ON : DISP_PARAM_LOCAL_HBM_OFF));
 
-        if (pressed) {
-            mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_STATUS, PARAM_FOD_PRESSED);
-        }
+        mDevice->extCmd(mDevice, COMMAND_FOD_PRESS_STATUS,
+                        pressed ? PARAM_FOD_PRESSED : PARAM_FOD_RELEASED);
     }
 };
 
