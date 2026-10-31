@@ -28,7 +28,7 @@
 #define PARAM_FOD_PRESSED 1
 #define PARAM_FOD_RELEASED 0
 
-#define FOD_STATUS_PATH "/sys/class/touch/touch_dev/fod_press_status"
+#define FOD_STATUS_PATH "/sys/class/touch/touch_dev/fod_longpress_gesture_enabled"
 #define FOD_STATUS_OFF 0
 #define FOD_STATUS_ON 1
 

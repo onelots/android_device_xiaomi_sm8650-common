@@ -356,6 +356,11 @@ vendor.usb.use_gadget_hal=1
 persist.vendor.vcb.ability=true
 persist.vendor.vcb.enable=false
 
+# Sensors
+ro.vendor.sensors.xiaomi.double_tap=true
+ro.vendor.sensors.xiaomi.single_tap=true
+ro.vendor.sensors.xiaomi.udfps=true
+
 # WiFi
 ro.vendor.net.enable_dual_wifi=1
 ro.vendor.net.enable_passpoint_r1=1
