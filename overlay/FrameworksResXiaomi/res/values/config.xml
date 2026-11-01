@@ -358,6 +358,15 @@
     -->
     <bool name="config_wifiDisplaySupportsProtectedBuffers">true</bool>
 
+    <!-- The default intensity level for haptic feedback. Values: 1 = Low, 2 = Medium, 3 = High -->
+    <integer name="config_defaultHapticFeedbackIntensity">1</integer>
+
+    <!-- The default intensity level for notification vibrations. Values: 1 = Low, 2 = Medium, 3 = High -->
+    <integer name="config_defaultNotificationVibrationIntensity">2</integer>
+
+    <!-- The default intensity level for ring vibrations. Values: 1 = Low, 2 = Medium, 3 = High -->
+    <integer name="config_defaultRingVibrationIntensity">2</integer>
+
     <!-- IWLAN data service package name to bind to by default. If none is specified in an overlay, an
          empty string is passed in -->
     <string name="config_wlan_data_service_package" translatable="false">vendor.qti.iwlan</string>

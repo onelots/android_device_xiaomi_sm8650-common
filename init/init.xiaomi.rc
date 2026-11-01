@@ -3,6 +3,14 @@ on early-boot
     chmod 0664 /sys/bus/platform/devices/soc:xiaomi_fingerprint/fingerdown
 
 on boot
+    # Haptics
+    chown system system /sys/class/qcom-haptics/mi_vmax_ctrl
+    chown system system /sys/class/qcom-haptics/mi_custom_vmax_ctrl
+    chmod 0660 /sys/class/qcom-haptics/mi_vmax_ctrl
+    chmod 0660 /sys/class/qcom-haptics/mi_custom_vmax_ctrl
+    write /sys/class/qcom-haptics/mi_vmax_ctrl 2500
+    write /sys/class/qcom-haptics/mi_custom_vmax_ctrl 2500
+
     # Xiaomi touch
     chown system system /dev/xiaomi-touch
     chmod 0660 /dev/xiaomi-touch
