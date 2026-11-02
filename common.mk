@@ -289,6 +289,10 @@ PRODUCT_PACKAGES += \
     WifiResTarget \
     WifiResTarget_spf
 
+# Parts
+PRODUCT_PACKAGES += \
+    XiaomiParts
+
 # Partitions
 PRODUCT_PACKAGES += \
     vendor_bt_firmware_mountpoint \
