@@ -7,7 +7,7 @@
 #define LOG_TAG "SensorNotifier"
 
 #include <android-base/logging.h>
-#include <vector>
+#include <android-base/properties.h>
 
 #include "notifiers/AodNotifier.h"
 #include "notifiers/NonUiNotifier.h"
@@ -27,8 +27,10 @@ int main() {
     }
 
     while (true) {
-        pause();
+        // Sleep to keep the notifiers alive
+        std::this_thread::sleep_for(std::chrono::seconds(10));
     }
 
+    // Should never reach this
     return EXIT_SUCCESS;
 }
