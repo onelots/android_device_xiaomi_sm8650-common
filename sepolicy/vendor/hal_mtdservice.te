@@ -76,3 +76,5 @@ hal_client_domain(hal_mtdservice_default, hal_mfidoca)
 hal_client_domain(hal_mtdservice_default, hal_mlipay)
 add_service(hal_mtdservice_server, hal_mtdservice_service)
 dontaudit hal_mtdservice_default serialno_prop:file { r_file_perms };
+dontaudit hal_mtdservice_default self:capability { dac_override dac_read_search sys_admin };
+dontaudit hal_mtdservice_default mnt_vendor_file:file getattr;
